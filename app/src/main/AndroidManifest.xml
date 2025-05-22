@@ -10,23 +10,35 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ChatApp"
+        android:theme="@style/Theme.AppCompat.Light"
         tools:targetApi="31">
-        <activity
-            android:name=".ForgetActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".SignUpActivity"
-            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".UsersCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CardSendActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CardReceivedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".MyLoginActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.ChatApp">
+            android:theme="@style/Theme.AppCompat.Light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

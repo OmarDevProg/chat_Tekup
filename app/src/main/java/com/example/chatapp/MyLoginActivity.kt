@@ -5,14 +5,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class MyLoginActivity : AppCompatActivity() {
 
@@ -23,21 +19,26 @@ class MyLoginActivity : AppCompatActivity() {
     private lateinit var textViewForget: TextView
 
     private lateinit var auth: FirebaseAuth
+    private var firebaseUser: FirebaseUser? = null
+
+    override fun onStart() {
+        super.onStart()
+        firebaseUser = FirebaseAuth.getInstance().currentUser
+        if (firebaseUser != null) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_my_login)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-        editTextEmail=findViewById(R.id.EditTextEmail)
-        editTextPassword=findViewById(R.id.EditTextPassword)
-        buttonSignin=findViewById(R.id.buttonSignin)
-        buttonSignup=findViewById(R.id.buttonSignup)
-        textViewForget=findViewById(R.id.textViewForget)
+
+        editTextEmail = findViewById(R.id.editTextEmail)
+        editTextPassword = findViewById(R.id.editTextPassword)
+        buttonSignin = findViewById(R.id.buttonSignin)
+        buttonSignup = findViewById(R.id.buttonSignup)
+        textViewForget = findViewById(R.id.textViewForget)
 
         auth = FirebaseAuth.getInstance()
 
@@ -53,30 +54,23 @@ class MyLoginActivity : AppCompatActivity() {
         }
 
         buttonSignup.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
 
         textViewForget.setOnClickListener {
-            val intent = Intent(this, ForgetActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ForgetActivity::class.java))
         }
     }
 
     private fun signin(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    Toast.makeText(this, "Sign in successful", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "Sign in failed", Toast.LENGTH_SHORT).show()
-                }
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(this, "Sign in is successful.", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            } else {
+                Toast.makeText(this, "Sign in is not successful.", Toast.LENGTH_SHORT).show()
             }
-
+        }
     }
 }
-
-
-

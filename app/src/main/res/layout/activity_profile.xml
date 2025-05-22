@@ -4,50 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ForgetActivity">
+    tools:context=".ProfileActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="50dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageViewCircleProfile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/forgetkey" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="150dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        app:layout_constraintTop_toBottomOf="@+id/imageViewCircleProfile">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextForget"
+            android:id="@+id/editTextUserNameProfile"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
+            android:hint="User Name"
+            android:inputType="textPersonName"
             android:textAlignment="center"
             android:textColor="#000000" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/buttonForget"
+        android:id="@+id/buttonUpdate"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:background="@color/colorPrimary"
-        android:text="RESET"
+        android:text="UPDATE PROFILE"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Tap to Photo for Update Profile"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewCircleProfile" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
